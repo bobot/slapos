@@ -37,7 +37,7 @@ computer-id = ${slap-connection:computer-id}
 partition-id = ${slap-connection:partition-id}
 name = ERP5 Cluster
 software-url = ${slap-connection:software-release-url}
-software-type = default
+software-type = cluster
 sla-computer_guid = {{ slapparameter_dict.get('launcher-computer-guid', computer_id) }}
 {# Add a zope scalability family to the erp5 cluster configuration, -#}
 {# this zope family is used by erp5-bootstrap and may serve to scalability monitoring tools. -#}

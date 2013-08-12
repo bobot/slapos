@@ -185,12 +185,14 @@ extra-context =
     section parameter_dict dynamic-template-mariadb-parameters
 # Must match the key id in [switch-softwaretype] which uses this section.
     raw software_type mariadb
+
 [dynamic-template-scalability-parameters]
 erp5 = {{ erp5_location }}
-erp5_dev = {{ erp5_dev_location }}
+erp5-dev = {{ erp5_dev_location }}
 local-bt5-repository = {{ local_bt5_repository }}
 curl-location = {{ curl_location }}
 dash-location = {{ dash_location }}
+bin-directory = {{ bin_directory }}
 
 
 [dynamic-template-scalability]
@@ -198,12 +200,11 @@ dash-location = {{ dash_location }}
 template = {{ template_scalability }}
 filename = instance-scalability.cfg
 extensions = jinja2.ext.do
-bin_directory = {{ bin_directory }}
 extra-context =
-    key bin_directory dynamic-template-scalability:bin_directory
+    key bin_directory dynamic-template-scalability-parameters:bin-directory
     key curl_location dynamic-template-scalability-parameters:curl-location
     key dash_location dynamic-template-scalability-parameters:dash-location
-    key erp5_location dynamic-template-scalability-parameters:erp5_dev
+    key erp5_location dynamic-template-scalability-parameters:erp5-dev
     key local_bt5_repository dynamic-template-scalability-parameters:local-bt5-repository
 # Must match the key id in [switch-softwaretype] which uses this section.
     raw software_type test 
