@@ -69,14 +69,6 @@ extra-context =
     key software_type :software-type
 software-type = default
 
-[dynamic-template-erp5-cluster]
-< = dynamic-template-erp5
-software-type = cluster
-
-[dynamic-template-erp5-RootSoftwareInstance]
-< = dynamic-template-erp5
-software-type = RootSoftwareInstance
-
 [dynamic-template-balancer-parameters]
 apache = {{ apache_location }}
 openssl = {{ openssl_location }}
