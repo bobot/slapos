@@ -69,10 +69,6 @@ extra-context =
     key software_type :software-type
 software-type = default
 
-[dynamic-template-erp5-cluster]
-< = dynamic-template-erp5
-software-type = cluster
-
 [dynamic-template-erp5-RootSoftwareInstance]
 < = dynamic-template-erp5
 software-type = RootSoftwareInstance
@@ -144,10 +140,6 @@ extra-context =
 # Must match the key id in [switch-softwaretype] which uses this section.
     key software_type :software-type
 software-type = zope
-
-[dynamic-template-cluster-zope]
-< = dynamic-template-zope
-software-type = cluster-zope
 
 [dynamic-template-kumofs-parameters]
 dash-location = {{ dash_location }}
