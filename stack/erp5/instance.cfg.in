@@ -244,5 +244,3 @@ balancer = ${dynamic-template-balancer:rendered}
 zodb-neo = ${dynamic-template-neo:rendered}
 zodb-zeo = ${dynamic-template-zeo:rendered}
 zope = ${dynamic-template-zope:rendered}
-cluster-zope = ${dynamic-template-cluster-zope:rendered}
-cluster = ${dynamic-template-erp5-cluster:rendered}
