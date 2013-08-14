@@ -48,7 +48,7 @@ config = {{ cluster_parameter_dict.keys() | join(' ') }}
 {% for key, value in cluster_parameter_dict.items() -%}
 config-{{ key }} = {{ dumps(value) }}
 {% endfor -%}
-return = mariadb-url family-scalability family-user memcached-persistent-url memcached-volatile-url cloudooo-url
+return = mariadb-database-list family-scalability family-user memcached-persistent-url memcached-volatile-url cloudooo-url
 state = ${slap-configuration:instance-state}
 
 # Create wrapper
@@ -106,7 +106,8 @@ bin = ${buildout:directory}/bin
 [erp5-bootstrap]
 recipe = slapos.cookbook:erp5.bootstrap
 runner-path = ${basedirectory:services}/erp5-bootstrap
-mysql-url =  ${erp5-cluster:connection-mariadb-url}
+#mysql-url =  ${erp5-cluster:mariadb-url}
+mysql-url-list =  ${erp5-cluster:connection-mariadb-database-list}
 zope-username = zope
 zope-password = insecure
 zope-site-id = {{ site_id }}
@@ -142,6 +143,6 @@ curl_path = {{ curl_location }}/bin/curl
 
 [publish]
 recipe = slapos.cookbook:publish.serialised
-test = test
-
+erp5-frontend-url = ${scalability-launcher-instance:erp5-url}
+erp5-scalability-url = ${erp5-cluster:connection-family-scalability}
 {% endif %}

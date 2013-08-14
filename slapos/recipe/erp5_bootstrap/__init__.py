@@ -74,7 +74,20 @@ class Recipe(GenericBaseRecipe):
   """
 
   def install(self):
-    parsed = urlparse.urlparse(self.options['mysql-url'])
+    
+    # Get mysql url
+    mysql_url = None
+    if self.options.get('mysql-url'):
+      mysql_url = self.options['mysql-url']
+    else:
+      # Get url of the first database of the list
+      mysql_url_list = self.options['mysql-url-list']
+      # Parse string to list
+      if not isinstance(mysql_url_list, list):
+        mysql_url_list = mysql_url_list[1:len(mysql_url_list)-1].split(',')
+      mysql_url = mysql_url_list[0]
+      
+    parsed = urlparse.urlparse(mysql_url)
     mysql_connection_string = "%(database)s@%(hostname)s:%(port)s "\
         "%(username)s %(password)s" % dict(
       database=parsed.path.split('/')[1],
