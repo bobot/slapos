@@ -39,6 +39,8 @@ name = ERP5 Cluster
 software-url = ${slap-connection:software-release-url}
 software-type = default
 sla-computer_guid = {{ slapparameter_dict.get('launcher-computer-guid', computer_id) }}
+{# Add haproxy server check path -#}
+{% do slapparameter_dict.get('cluster').update( {'haproxy-server-check-path':'/'} ) -%}
 {# Add a zope scalability family to the erp5 cluster configuration, -#}
 {# this zope family is used by erp5-bootstrap and may serve to scalability monitoring tools. -#}
 {% set additional_scalability_zope = {'scalability':{'family':'scalability', 'computer-guid':computer_id}} -%}
