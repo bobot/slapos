@@ -104,8 +104,10 @@ config-site-id = {{ site_id }}
 config-deadlock-debugger-password = ${deadlock-debugger-password:passwd}
 software-type = zope
 
+{% set zope_global_count = 0 %}
 {% set zope_family_dict = {} -%}
 {% for custom_name, zope_parameter_dict in slapparameter_dict.get('zope-partition-dict', {'1': {}}).items() -%}
+{%   set zope_local_count = zope_parameter_dict.get('instance-count', 1) %}
 {%   set base_name = 'zope-' ~ custom_name -%}
 {%   set name = 'request-' ~ base_name -%}
 {%   do zope_family_dict.setdefault(zope_parameter_dict.get('family', 'default'), []).append(name) -%}
@@ -119,6 +121,7 @@ config-longrequest-logger-interval = {{ dumps(zope_parameter_dict.get('longreque
 config-longrequest-logger-timeout = {{ dumps(zope_parameter_dict.get('longrequest-logger-timeout', 1)) }}
 config-port-base = {{ dumps(zope_parameter_dict.get('port-base', 2200)) }}
 sla-computer_guid = {{ zope_parameter_dict.get('computer-guid', computer_id) }}
+{% set zope_global_count = zope_global_count + zope_local_count %}
 {% endfor -%}
 
 {# We need to concatenate lists that we cannot read as lists, so this gets hairy. -#}
@@ -151,6 +154,7 @@ sla-computer_guid = {{ slapparameter_dict.get('balancer-computer-guid', computer
 extra-config =
   tcpv4-port
   haproxy-maxconn
+  haproxy-zope-expected-number
   haproxy-server-check-path
   apache-access-control-string
   apache-ssl-authentication
@@ -167,6 +171,8 @@ config-{{ name }} = {{ ' ${' ~ zope_section_id ~ ':connection-zope-address-list}
 {% endfor -%}
 # XXX: should those really be same for all families ?
 config-haproxy-maxconn = {{ slapparameter_dict.get('haproxy-maxconn', 1) }}
+# XXX: number of expected zopes (hack to prevent haproxy prematurated start)
+config-haproxy-zope-expected-number = {{ zope_global_count }}
 config-haproxy-server-check-path = {{ slapparameter_dict.get('haproxy-server-check-path', '/%(site-id)s/getId') % {'site-id': site_id} }}
 config-apache-access-control-string = {{ slapparameter_dict.get('apache-access-control-string', 'all') }}
 config-apache-ssl-authentication = {{ slapparameter_dict.get('apache-ssl-authentication', '0') }}

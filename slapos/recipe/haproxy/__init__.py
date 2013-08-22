@@ -112,6 +112,13 @@ class Recipe(GenericBaseRecipe):
             'cluster_zope_thread_amount': maxconn,
           })
 
+    # XXX: hack to force haproxy to start when all zopes are ready
+    # in order to prevent starting haproxy without taking into
+    # account delayed zopes.
+    zope_expected_number = self.options['zope-expected-number']
+    if i < zope_expected_number:
+      raise ValueError("All zope are not ready yet")
+
     configuration_path = self.createFile(
       self.options['conf-path'],
       self.substituteTemplate(

@@ -62,6 +62,8 @@ ctl-path = ${directory:bin}/haproxy-ctl
 socket-path = ${directory:run}/haproxy.sock
 binary-path = {{ parameter_dict['haproxy'] }}/sbin/haproxy
 backend-dict = {{ dumps(haproxy_dict) }}
+# XXX: hack to do not start haproxy when all zopes are not ready.
+zope-expected-number = {{ slapparameter_dict['haproxy-zope-expected-number'] }}
 
 [apache]
 recipe = slapos.cookbook:apache.zope.backend
