@@ -115,9 +115,12 @@ class Recipe(GenericBaseRecipe):
     # XXX: hack to force haproxy to start when all zopes are ready
     # in order to prevent starting haproxy without taking into
     # account delayed zopes.
-    zope_expected_number = self.options['zope-expected-number']
+    zope_expected_number = int(self.options['zope-expected-number'])
     if i < zope_expected_number:
-      raise ValueError("All zope are not ready yet")
+      raise ValueError("All zopes (%d) are not ready yet"
+                       "%d zopes are present on haproxy configuration file)."
+                       %(zope_expected_number, i)
+                      )
 
     configuration_path = self.createFile(
       self.options['conf-path'],
