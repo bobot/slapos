@@ -107,13 +107,15 @@ software-type = zope
 {% set zope_global_count = 0 %}
 {% set zope_family_dict = {} -%}
 {% for custom_name, zope_parameter_dict in slapparameter_dict.get('zope-partition-dict', {'1': {}}).items() -%}
-{%   set zope_local_count = zope_parameter_dict.get('instance-count', 1) %}
+{%   set zope_global_count = zope_global_count + zope_parameter_dict.get('instance-count', 1) %}
 {%   set base_name = 'zope-' ~ custom_name -%}
 {%   set name = 'request-' ~ base_name -%}
 {%   do zope_family_dict.setdefault(zope_parameter_dict.get('family', 'default'), []).append(name) -%}
 [{{ name }}]
 < = request-zope-base
 name = {{ base_name }}
+## log: zope_global_count = {{ zope_global_count }}
+## log: dumps(zope_parameter_dict.get('instance-count', 1)) = {{ dumps(zope_parameter_dict.get('instance-count', 1)) }}
 config-instance-count = {{ dumps(zope_parameter_dict.get('instance-count', 1)) }}
 config-thread-amount = {{ dumps(zope_parameter_dict.get('thread-amount', 1)) }}
 config-timerserver-interval = {{ dumps(zope_parameter_dict.get('timerserver-interval', 5)) }}
@@ -121,8 +123,10 @@ config-longrequest-logger-interval = {{ dumps(zope_parameter_dict.get('longreque
 config-longrequest-logger-timeout = {{ dumps(zope_parameter_dict.get('longrequest-logger-timeout', 1)) }}
 config-port-base = {{ dumps(zope_parameter_dict.get('port-base', 2200)) }}
 sla-computer_guid = {{ zope_parameter_dict.get('computer-guid', computer_id) }}
-{% set zope_global_count = zope_global_count + zope_local_count %}
 {% endfor -%}
+
+
+## log: zope_global_count = {{ zope_global_count }}
 
 {# We need to concatenate lists that we cannot read as lists, so this gets hairy. -#}
 {% set zope_address_list_id_dict = {} -%}
