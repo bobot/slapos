@@ -104,17 +104,17 @@ config-site-id = {{ site_id }}
 config-deadlock-debugger-password = ${deadlock-debugger-password:passwd}
 software-type = zope
 
-{% set zope_global_count = 0 %}
+{% set zope_global_count = {'value':0} %}
 {% set zope_family_dict = {} -%}
 {% for custom_name, zope_parameter_dict in slapparameter_dict.get('zope-partition-dict', {'1': {}}).items() -%}
-{%   set zope_global_count = zope_global_count + zope_parameter_dict.get('instance-count', 1) %}
+{%   if zope_global_count.update({'value': zope_global_count.value + zope_parameter_dict.get('instance-count', 1)}) %}{% endif %}
 {%   set base_name = 'zope-' ~ custom_name -%}
 {%   set name = 'request-' ~ base_name -%}
 {%   do zope_family_dict.setdefault(zope_parameter_dict.get('family', 'default'), []).append(name) -%}
 [{{ name }}]
 < = request-zope-base
 name = {{ base_name }}
-## log: zope_global_count = {{ dumps(zope_global_count) }}
+## log: zope_global_count = {{ dumps(zope_global_count.value) }}
 ## log: dumps(zope_parameter_dict.get('instance-count', 1)) = {{ dumps(zope_parameter_dict.get('instance-count', 1)) }}
 config-instance-count = {{ dumps(zope_parameter_dict.get('instance-count', 1)) }}
 config-thread-amount = {{ dumps(zope_parameter_dict.get('thread-amount', 1)) }}
@@ -126,7 +126,7 @@ sla-computer_guid = {{ zope_parameter_dict.get('computer-guid', computer_id) }}
 {% endfor -%}
 
 
-## log: zope_global_count = {{ dumps(zope_global_count) }}
+## log: zope_global_count = {{ dumps(zope_global_count.value) }}
 
 {# We need to concatenate lists that we cannot read as lists, so this gets hairy. -#}
 {% set zope_address_list_id_dict = {} -%}
@@ -176,7 +176,7 @@ config-{{ name }} = {{ ' ${' ~ zope_section_id ~ ':connection-zope-address-list}
 # XXX: should those really be same for all families ?
 config-haproxy-maxconn = {{ slapparameter_dict.get('haproxy-maxconn', 1) }}
 # XXX: number of expected zopes (hack to prevent haproxy prematurated start)
-config-haproxy-zope-expected-number = {{ dumps(zope_global_count) }}
+config-haproxy-zope-expected-number = {{ dumps(zope_global_count.value) }}
 config-haproxy-server-check-path = {{ slapparameter_dict.get('haproxy-server-check-path', '/%(site-id)s/getId') % {'site-id': site_id} }}
 config-apache-access-control-string = {{ slapparameter_dict.get('apache-access-control-string', 'all') }}
 config-apache-ssl-authentication = {{ slapparameter_dict.get('apache-ssl-authentication', '0') }}
