@@ -43,8 +43,8 @@ diff -ur zerovm/zvm-toolchain/SRC/binutils/ld/ld.texinfo zerovm.bak/zvm-toolchai
 Les fichiers binaires zerovm/zvm-toolchain/SRC/newlib/.git/index et zerovm.bak/zvm-toolchain/SRC/newlib/.git/index sont différents
 diff --git a/zerovm/zvm-toolchain/SRC/binutils/gas/doc/as.info b/zerovm/zvm-toolchain/SRC/binutils/gas/doc/as.info
 index 4f4af95..e69de29 100644
---- a/zerovm/zvm-toolchain/SRC/binutils/gas/doc/as.info
-+++ b/zerovm/zvm-toolchain/SRC/binutils/gas/doc/as.info
+--- zerovm/zvm-toolchain/SRC/binutils/gas/doc/as.info
++++ zerovm.bak/zvm-toolchain/SRC/binutils/gas/doc/as.info
 @@ -1,22076 +0,0 @@
 -This is as.info, produced by makeinfo version 4.8 from as.texinfo.
 -
