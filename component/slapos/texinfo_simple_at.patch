@@ -1,0 +1,87 @@
+diff -ur zerovm/zvm-toolchain/SRC/binutils/bfd/doc/bfd.texinfo zerovm.bak/zvm-toolchain/SRC/binutils/bfd/doc/bfd.texinfo
+--- zerovm/zvm-toolchain/SRC/binutils/bfd/doc/bfd.texinfo	2013-07-29 17:01:14.998969515 +0200
++++ zerovm.bak/zvm-toolchain/SRC/binutils/bfd/doc/bfd.texinfo	2013-09-02 16:11:10.908482171 +0200
+@@ -323,7 +323,7 @@
+ @printindex cp
+ 
+ @tex
+-% I think something like @colophon should be in texinfo.  In the
++% I think something like @@colophon should be in texinfo.  In the
+ % meantime:
+ \long\def\colophon{\hbox to0pt{}\vfill
+ \centerline{The body of this manual is set in}
+@@ -334,7 +334,7 @@
+ \centerline{{\sl\fontname\tensl\/}}
+ \centerline{are used for emphasis.}\vfill}
+ \page\colophon
+-% Blame: doc@cygnus.com, 28mar91.
++% Blame: doc@@cygnus.com, 28mar91.
+ @end tex
+ 
+ @bye
+diff -ur zerovm/zvm-toolchain/SRC/binutils/gas/doc/as.texinfo zerovm.bak/zvm-toolchain/SRC/binutils/gas/doc/as.texinfo
+--- zerovm/zvm-toolchain/SRC/binutils/gas/doc/as.texinfo	2013-07-29 15:04:07.610744663 +0200
++++ zerovm.bak/zvm-toolchain/SRC/binutils/gas/doc/as.texinfo	2013-09-02 16:12:06.719429698 +0200
+@@ -1465,7 +1465,7 @@
+ doesn't change the meaning of the source.
+ 
+ @c I added "con" prefix to "catenation" just to prove I can overcome my
+-@c APL training...   doc@cygnus.com
++@c APL training...   doc@@cygnus.com
+ The source program is a concatenation of the text in all the files, in the
+ order specified.
+ 
+@@ -5425,7 +5425,7 @@
+ 
+ @c double negative used below "not undefined" because this is a specific
+ @c reference to "undefined" (as SEG_UNKNOWN is called in this manual)
+-@c section. doc@cygnus.com 18feb91
++@c section. doc@@cygnus.com 18feb91
+ Because @command{@value{AS}} tries to assemble programs in one pass, @var{new-lc}
+ may not be undefined.  If you really detest this restriction we eagerly await
+ a chance to share your improved assembler.
+Seulement dans zerovm.bak/zvm-toolchain/SRC/binutils/.git: FETCH_HEAD
+Les fichiers binaires zerovm/zvm-toolchain/SRC/binutils/.git/index et zerovm.bak/zvm-toolchain/SRC/binutils/.git/index sont différents
+diff -ur zerovm/zvm-toolchain/SRC/binutils/ld/ld.texinfo zerovm.bak/zvm-toolchain/SRC/binutils/ld/ld.texinfo
+--- zerovm/zvm-toolchain/SRC/binutils/ld/ld.texinfo	2013-07-29 17:01:15.006969515 +0200
++++ zerovm.bak/zvm-toolchain/SRC/binutils/ld/ld.texinfo	2013-09-02 16:12:05.867445765 +0200
+@@ -7509,7 +7509,7 @@
+ @printindex cp
+ 
+ @tex
+-% I think something like @colophon should be in texinfo.  In the
++% I think something like @@colophon should be in texinfo.  In the
+ % meantime:
+ \long\def\colophon{\hbox to0pt{}\vfill
+ \centerline{The body of this manual is set in}
+@@ -7520,7 +7520,7 @@
+ \centerline{{\sl\fontname\tensl\/}}
+ \centerline{are used for emphasis.}\vfill}
+ \page\colophon
+-% Blame: doc@cygnus.com, 28mar91.
++% Blame: doc@@cygnus.com, 28mar91.
+ @end tex
+ 
+ @bye
+Les fichiers binaires zerovm/zvm-toolchain/SRC/newlib/.git/index et zerovm.bak/zvm-toolchain/SRC/newlib/.git/index sont différents
+diff -ur zerovm/zvm-toolchain/SRC/newlib/newlib/libc/libc.texinfo zerovm.bak/zvm-toolchain/SRC/newlib/newlib/libc/libc.texinfo
+--- zerovm/zvm-toolchain/SRC/newlib/newlib/libc/libc.texinfo	2013-07-29 15:03:43.074743878 +0200
++++ zerovm.bak/zvm-toolchain/SRC/newlib/newlib/libc/libc.texinfo	2013-09-02 16:11:28.656147488 +0200
+@@ -429,7 +429,7 @@
+ @printindex cp
+ 
+ @tex
+-% I think something like @colophon should be in texinfo.  In the
++% I think something like @@colophon should be in texinfo.  In the
+ % meantime:
+ \long\def\colophon{\hbox to0pt{}\vfill
+ \centerline{The body of this manual is set in}
+@@ -440,7 +440,7 @@
+ \centerline{{\sl\fontname\tensl\/}}
+ \centerline{are used for emphasis.}\vfill}
+ \page\colophon
+-% Blame: pesch@cygnus.com, 28mar91.
++% Blame: pesch@@cygnus.com, 28mar91.
+ @end tex
+ 
+ @contents
