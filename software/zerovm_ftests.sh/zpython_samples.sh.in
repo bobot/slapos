@@ -6,5 +6,5 @@ export PATH=$ZVM_PREFIX/bin:$PATH
 
 
 cd ${zerovm-samples-source:location}/zshell
-exec run_python_samples.sh
+exec ./run_python_samples.sh
 
