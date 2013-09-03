@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 export ZVM_PREFIX=${zerovm:location}
 export ZEROVM_ROOT=${zerovm-source:location}
