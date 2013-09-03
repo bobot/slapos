@@ -30,4 +30,5 @@ promise = $${:etc}/promise/
 [zerovm-tests-wrapper]
 recipe = plone.recipe.command
 command = cp ${template-ftests.sh:output} $${directory:scripts}/ftests.sh && chmod +x $${directory:scripts}/ftests.sh
+update-command = cp ${template-ftests.sh:output} $${directory:scripts}/ftests.sh && chmod +x $${directory:scripts}/ftests.sh
 
