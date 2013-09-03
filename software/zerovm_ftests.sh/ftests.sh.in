@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export ZVM_PREFIX=${zerovm:location}
+export ZEROVM_ROOT=${zerovm-source:location}
+export PATH=$ZVM_PREFIX/bin:%(PATH)s
+
+exec $ZEROVM_ROOT/ftests.sh
+

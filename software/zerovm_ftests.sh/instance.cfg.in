@@ -28,11 +28,6 @@ promise = $${:etc}/promise/
 
 
 [zerovm-tests-wrapper]
-recipe = slapos.cookbook:wrapper
-command-line = $ZEROVM_ROOT/ftests.sh
-wrapper-path = $${directory:scripts}/ftests
-environment =
-  ZVM_PREFIX=${zerovm:location}
-  ZEROVM_ROOT=${zerovm-source:location}
-  PATH=$ZVM_PREFIX/bin:%(PATH)s
+recipe = plone.recipe.command
+command = cp ${template-ftests.sh:output} $${directory:scripts}/ftests.sh && chmod +x $${directory:scripts}/ftests.sh
 
