@@ -2,7 +2,7 @@
 
 export ZVM_PREFIX=${zerovm:location}
 export ZEROVM_ROOT=${zerovm-source:location}
-export PATH=$ZVM_PREFIX/bin:%(PATH)s
+export PATH=$ZVM_PREFIX/bin:$PATH
 
 exec $ZEROVM_ROOT/ftests.sh
 
